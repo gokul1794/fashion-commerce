@@ -1,1 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+/*body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }*/
+body, input, textarea, button, select {
+    font-size: 12px;
+    font-family: Helvetica,"Helvetica Neue",Arial,"Lucida Grande",sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    color: #333;
+    line-height: 1.6;
+}
+/* The emerging W3C standard
+   that is currently Firefox-only */
+* {
+  scrollbar-width: thin;
+}
