@@ -7,17 +7,24 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomePageComponent } from './home-page/home-page.component';
 import { ProductListingComponent } from './product-listing/product-listing.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { SearchListingComponent } from './search-listing/search-listing.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     HomePageComponent,
     ProductListingComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    SearchListingComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

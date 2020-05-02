@@ -1,18 +1,19 @@
 import { Component, OnInit } from '@angular/core';
+import { Product, hits, Elasticsearch } from 'src/httpCalls/Product';
 import { ProductService } from 'src/httpCalls/product.service';
-import { Product, Elasticsearch, hits } from 'src/httpCalls/Product';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-product-listing',
-  templateUrl: './product-listing.component.html',
-  styleUrls: ['./product-listing.component.css']
+  selector: 'app-search-listing',
+  templateUrl: './search-listing.component.html',
+  styleUrls: ['./search-listing.component.css']
 })
-export class ProductListingComponent implements OnInit {
-  category: string;
+export class SearchListingComponent implements OnInit {
+  searches: hits[];
   categories: string[] = [];
   products: Product[] = [];
   productId: string;
+  category: string;
   elasticSearch: Elasticsearch;
   hits: hits[];
 
@@ -25,11 +26,8 @@ export class ProductListingComponent implements OnInit {
         
       });
 
+    this.searches = this.productService.hits;
     this.category = this.productService.categoryData;
-    this.productService.GetProductsByCategory(this.category).subscribe(
-      res => {
-        this.products = res;
-      });
   }
 
   getProductByCategory(category){
@@ -50,9 +48,8 @@ export class ProductListingComponent implements OnInit {
       res => {
         this.elasticSearch = res.hits;
         this.hits = this.elasticSearch.hits;
-        this.productService.hits = this.hits;
-        this.productService.categoryData = query;
-        this.router.navigate(['/search/']);
+        this.searches = this.hits;
+        this.category = query;
       });
   }
 

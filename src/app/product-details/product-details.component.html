@@ -1,37 +1,62 @@
-<nav class="navbar navbar-dark bg-dark">
-    <a class="navbar-brand">Simple</a>
-    <form class="form-inline">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search products</button>
-    </form>
-  </nav>
+<nav class="navbar navbar-dark bg-dark navbar-expand-lg">
+  <a class="navbar-brand" href="/home">Simple</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item" *ngFor="let category of categories; let i=index" >
+        <a class="nav-link" style="font-size: 1.25em;cursor: pointer;" (click)="getProductByCategory(category)">{{category | titlecase}}</a>
+      </li>
+    </ul>
+  </div>
+  <form class="form-inline">
+    <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" #search (change)="searchProducts(search.value)"> 
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit" >Search products</button>
+  </form>
+</nav>
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">{{product[0].category.categoryName | titlecase}}</h1>
+  </div>
+</div>
 <div class="container-fluid">
-    <div class="row up-bar">
-        <div class="col-1">
-            
-        </div>
-        <div class="col-3">
-            Product Details
-        </div>
-    </div>
     <div class="row">
-        <div class="col-1">
+        <div class="col-lg-1">
         </div>
-        <div class="col-3">
-            <div class="card" style="width: 25rem;">
-                <img src="https://cdn.shopify.com/s/files/1/0037/5472/products/SGT-1161A_01_540x.jpg?v=1509388451" class="card-img-top" alt="...">
+        <div class="col-lg-3 col-sm-12">
+            <div class="card" style="width: 18rem;">
+                <img src="{{product[0].url}}" class="card-img-top" alt="...">
               </div>
         </div>
-        <div class="col-6" style="padding-left: 5em;">
+        <div class="col-lg-6 col-sm-12" style="padding-left: 1em;">
             <div class="card">
                 <div class="card-header">
-                  Category
+                  {{product[0].category.categoryName | titlecase}}
                 </div>
                 <div class="card-body">
-                  <h5 class="card-title">Title</h5>
-                  <p class="card-text">Introducing the OPERATOR distressed denim trucker jacket. This fitted jacket is constructed from high quality 100% cotton and designed with a point collar. The jacket has cut and sew front panels, chest and side entry hand pockets and is detailed with branded rivet buttons, antique silver cuff zips and custom rip and repairs.This jacket has been expertly washed to create an aged Western look.</p>
-                  <a href="#" class="btn btn-primary">Buy</a>
+                  <h5 class="card-title"> {{product[0].title}}</h5>
+                  <p class="card-text">{{product[0].description}}</p>
+                  <p class="card-text">${{product[0].pricing.price}}</p>
+                  <p class="card-text">Available Quantity -{{product[0].quantity}}</p>
+                  <div class="row">
+                  <div class="col-lg-3 col-sm-12">
+                    <select class="form-control form-control-sm">
+                      <option>Color</option>
+                      <option>{{product[0].category.color}}</option>
+                    </select>
+                  </div>
+                  <div class="col-lg-3 col-sm-12">
+                    <select class="form-control form-control-sm">
+                      <option>Size</option>
+                      <option>{{product[0].shippingDetails.height}}</option>
+                    </select>
+                  </div>
+                  <div class="col-lg-3 col-sm-12">
+                  <a class="btn btn-light default">Add to Cart</a>
+                  </div>
                 </div>
+                <a class="btn btn-light default">Buy</a>
               </div>
         </div>
     </div>

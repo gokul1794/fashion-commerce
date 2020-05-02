@@ -1,3 +1,7 @@
 .up-bar{
     padding-top: 7em;
 }
+.default {
+    border-color: #e7e7e7;
+    color: black;
+  }

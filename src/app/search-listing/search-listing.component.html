@@ -12,13 +12,13 @@
       </ul>
     </div>
     <form class="form-inline">
-      <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" #search (change)="searchProducts(search.value)"> 
-    <button class="btn btn-outline-success my-2 my-sm-0" type="submit" >Search products</button>
+        <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" #search (change)="searchProducts(search.value)"> 
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit" >Search products</button>
     </form>
   </nav>
   <div class="jumbotron jumbotron-fluid">
     <div class="container">
-      <h1 class="display-4">{{category | titlecase}}</h1>
+      <h1 class="display-4">Search - {{category | titlecase}}</h1>
     </div>
   </div>
     <div class="row">
@@ -29,14 +29,14 @@
           </li>
         </ul>
       </div> -->
-      <div class="col-md-4 col-lg-3 col-sm-12" *ngFor="let product of products; let i=index">
+      <div class="col-md-4 col-lg-3 col-sm-12" *ngFor="let search of searches; let i=index">
         <div style="padding: 1em;" >
         <div class="card" style="width: 18rem;" >
-          <img src="{{product.url}}" class="card-img-top" alt="...">
+          <img src="{{search._source.url}}" class="card-img-top" alt="...">
           <div class="card-body">
-            <h5 class="card-title">{{product.title}}</h5>
-            <p class="card-text">${{product.pricing.price}}</p>
-            <a class="btn btn-light default" (click)="showProductDetails(product.productId)">Buy this</a>
+            <h5 class="card-title">{{search._source.title}}</h5>
+            <p class="card-text">${{search._source.pricing.price}}</p>
+            <a class="btn btn-light default" (click)="showProductDetails(search._source.productId)">Buy this</a>
           </div>
         </div>
         </div>

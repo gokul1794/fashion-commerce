@@ -3,4 +3,11 @@
 }
 .side-nav{
     font-size: 2em;
-  } 
+  }
+li{
+    cursor: pointer;
+}
+.default {
+    border-color: #e7e7e7;
+    color: black;
+  }

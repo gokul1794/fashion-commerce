@@ -4,3 +4,7 @@
 .col-menu{
   padding-top: 1em;
 }
+.default {
+  border-color: #e7e7e7;
+  color: black;
+}

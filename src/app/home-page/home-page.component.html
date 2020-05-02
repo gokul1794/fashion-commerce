@@ -1,90 +1,39 @@
-<nav class="navbar navbar-dark bg-dark">
-  <a class="navbar-brand">Simple</a>
+<nav class="navbar navbar-dark bg-dark navbar-expand-lg">
+  <a class="navbar-brand" href="/home">Simple</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item" *ngFor="let category of categories; let i=index" >
+        <a class="nav-link" style="font-size: 1.25em;cursor: pointer;" (click)="getProductByCategory(category)">{{category | titlecase}}</a>
+      </li>
+    </ul>
+  </div>
   <form class="form-inline">
-    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search products</button>
+    <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" #search (change)="searchProducts(search.value)"> 
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit" >Search products</button>
   </form>
 </nav>
 
   <div class="jumbotron jumbotron-fluid">
     <div class="container">
-      <h1 class="display-4">Simple</h1>
-      <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+      <h1 class="display-4">Homepage</h1>
     </div>
   </div>
   <div class="container-fluid">
   <div class="row">
-    <div class="col-3 col-menu">
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item side-nav" >Home</li>
-        <li class="list-group-item side-nav" >Denim</li>
-        <li class="list-group-item side-nav" >Footwear</li>
-        <li class="list-group-item side-nav" >OuterWear</li>
-        <li class="list-group-item side-nav" >Pants</li>
-        <li class="list-group-item side-nav" >Shirts</li>
-        <li class="list-group-item side-nav" >T-Shirts</li>
-        <li class="list-group-item side-nav" >Shorts</li>
-      </ul>
-    </div>
-    <div class="col-3">
-      <div class="card" style="width: 18rem;">
-        <img src="https://cdn.shopify.com/s/files/1/0037/5472/products/SGT-1161A_01_540x.jpg?v=1509388451" class="card-img-top" alt="...">
+    <div class="col-md-4 col-lg-3 col-sm-12" *ngFor="let product of products; let i=index">
+      <div style="padding: 1em;">
+      <div class="card" style="width: 18rem;" >
+        <img src="{{product.url}}" class="card-img-top" alt="...">
         <div class="card-body">
-          <h5 class="card-title">Stealth Bomber Jacket</h5>
-          <p class="card-text">$1,599.95</p>
-          <a href="#" class="btn btn-primary">Buy this</a>
+          <h5 class="card-title">{{product.title}}</h5>
+          <p class="card-text">${{product.pricing.price}}</p>
+          <a class="btn btn-light default" (click)="showProductDetails(product.productId)">Buy this</a>
         </div>
       </div>
-      <div class="col-menu"></div>
-      <div class="card" style="width: 18rem;">
-        <img src="https://cdn.shopify.com/s/files/1/0037/5472/products/SGT-1156_01_540x.jpg?v=1509388433" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Wolfpack Jacket</h5>
-          <p class="card-text">$1,599.95</p>
-          <a href="#" class="btn btn-primary">Buy this</a>
-        </div>
       </div>
-    </div>
-    <div class="col-3">
-      <div class="card" style="width: 18rem;">
-        <img src="https://cdn.shopify.com/s/files/1/0037/5472/products/SGT-1162A-Olive_Front_S_540x.jpg?v=1509388376" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Storm Jacket</h5>
-          <p class="card-text">$999.95 </p>
-          <a href="#" class="btn btn-primary">Buy this</a>
-        </div>
-      </div>
-      <div class="col-menu">
-      <div class="card" style="width: 18rem;">
-        <img src="https://cdn.shopify.com/s/files/1/0037/5472/products/SGT-1155B_01_540x.jpg?v=1509388434" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Operator Denim Jacket</h5>
-          <p class="card-text">$1,399.95 </p>
-          <a href="#" class="btn btn-primary">Buy this</a>
-        </div>
-      </div>
-    </div>
-    </div>
-    <div class="col-3">
-      <div class="card" style="width: 18rem;">
-        <img src="https://cdn.shopify.com/s/files/1/0037/5472/products/SGT-1159A_01_540x.jpg?v=1509388468" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Navigator Parka Jacket</h5>
-          <p class="card-text">$1,999.95 </p>
-          <a href="#" class="btn btn-primary">Buy this</a>
-        </div>
-      </div>
-      <div class="col-menu">
-      <div class="card" style="width: 18rem;">
-        <img src="https://cdn.shopify.com/s/files/1/0037/5472/products/SGT-1154-Olive_01_540x.jpg?v=1509388410" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Gulf Jacket - Olive</h5>
-          <p class="card-text">$1,299.95</p>
-          <a href="#" class="btn btn-primary">Buy this</a>
-        </div>
-      </div>
-    </div>
-    </div>
-    
+    </div> 
   </div>
 </div>
